@@ -6,7 +6,7 @@ Console.OutputEncoding = Encoding.UTF8;
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
 CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
 
-var labTask1Data = new decimal[3,2]
+var labTask1Data = new decimal[,]
 {
     { 550_000, -250_000 },
     { 300_000, -75_000 },
@@ -17,14 +17,14 @@ var labTasks = new ILabTask[]
     new LabTask1(labTask1Data),
     new LabTask2(
         labTask1Data,
-        new decimal[,]
+        new[,]
         {
             { 0.75m, 0.3m},
             { 0.25m, 0.7m}
         },
         10_000),
     new LabTask3(
-        new decimal[5,2]
+        new[,]
         {
             {0.6m,0.3m},
             {0.3m,0.25m},
