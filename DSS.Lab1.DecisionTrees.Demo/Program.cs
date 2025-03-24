@@ -22,7 +22,19 @@ var labTasks = new ILabTask[]
             { 0.75m, 0.3m},
             { 0.25m, 0.7m}
         },
-        10_000)
+        10_000),
+    new LabTask3(
+        new decimal[5,2]
+        {
+            {0.6m,0.3m},
+            {0.3m,0.25m},
+            {0.15m,0.15m},
+            {0.15m,0.1m},
+            {0.05m,0.05m}
+        },
+        140,
+        15000,
+        1100)
 };
 
 for (var i = 0; i < labTasks.Length; i++)

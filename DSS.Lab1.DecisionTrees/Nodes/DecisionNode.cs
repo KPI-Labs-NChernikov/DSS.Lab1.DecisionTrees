@@ -3,14 +3,16 @@
 public sealed class DecisionNode : Node
 {
     private readonly List<INode> _bestChildren = [];
+    public DecisionNodeType DecisionNodeType { get; init; }
     
     public override void Execute()
     {
-        var bestResultValue = decimal.MinValue;
+        var bestResultValue = DecisionNodeType == DecisionNodeType.Maximize ? decimal.MinValue  : decimal.MaxValue;
         foreach (var node in Children)
         {
             node.Execute();
-            if (node.ResultValue > bestResultValue)
+            if ((DecisionNodeType == DecisionNodeType.Maximize && node.ResultValue > bestResultValue)
+                || (DecisionNodeType == DecisionNodeType.Minimize && node.ResultValue < bestResultValue))
             {
                 bestResultValue = node.ResultValue;
             }
