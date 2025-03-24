@@ -2,7 +2,7 @@
 
 public sealed class DecisionNode : Node
 {
-    private List<INode> _bestChildren = [];
+    private readonly List<INode> _bestChildren = [];
     
     public override void Execute()
     {

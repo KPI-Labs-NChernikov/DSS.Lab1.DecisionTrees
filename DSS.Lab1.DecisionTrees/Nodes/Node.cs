@@ -26,7 +26,7 @@ public abstract class Node : INode
 
     public virtual void Validate()
     {
-        if (Factor < 0 || Factor > 1)
+        if (Factor is < 0 or > 1)
         {
             throw new InvalidOperationException("Factor must be between 0 and 1.");
         }
