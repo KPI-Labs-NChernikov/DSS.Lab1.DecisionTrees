@@ -5,6 +5,18 @@ public class DecisionTree
     public INode Root { get; }
 
     public DecisionTreeState State { get; private set; } = DecisionTreeState.Created;
+    
+    public decimal ResultValue
+    {
+        get
+        {
+            if (State < DecisionTreeState.Executed)
+            {
+                throw new InvalidOperationException("Decision tree must be executed first.");
+            }
+            return Root.ResultValue;
+        }
+    }
 
     public DecisionTree(INode root)
     {
@@ -28,15 +40,13 @@ public class DecisionTree
         State = DecisionTreeStateHelper.ToExecuted(State);
     }
 
-    public IReadOnlyList<IReadOnlyList<INode>> GetBestPaths()
+    public List<INode> GetBestChildren()
     {
         if (State < DecisionTreeState.Executed)
         {
             throw new InvalidOperationException("Decision tree must be executed first.");
         }
-        
-        return Root.GetBestPaths([])
-            .Select(p => p.ToList())
-            .ToList();
+
+        return Root.GetBestChildren();
     }
 }

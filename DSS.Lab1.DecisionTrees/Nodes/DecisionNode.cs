@@ -2,7 +2,7 @@
 
 public sealed class DecisionNode : Node
 {
-    public List<INode> BestChildren { get; } = [];
+    private List<INode> _bestChildren = [];
     
     public override void Execute()
     {
@@ -20,7 +20,7 @@ public sealed class DecisionNode : Node
         {
             if (node.ResultValue == bestResultValue)
             {
-                BestChildren.Add(node);
+                _bestChildren.Add(node);
             }
         }
         
@@ -36,20 +36,9 @@ public sealed class DecisionNode : Node
         
         base.Validate();
     }
-    
-    public override IEnumerable<IEnumerable<INode>> GetBestPaths(List<INode> currentPath)
+
+    public override List<INode> GetBestChildren()
     {
-        currentPath.Add(this);
-        var paths = new List<IEnumerable<INode>>();
-        foreach (var child in BestChildren)
-        {
-            var childPath = new List<INode>(currentPath);
-            var nextBestPaths = child.GetBestPaths(childPath);
-            foreach (var path in nextBestPaths)
-            {
-                paths.Add(path);
-            }
-        }
-        return paths;
+        return _bestChildren;
     }
 }

@@ -16,20 +16,4 @@ public abstract class OperationNodeBase : Node
         
         State = DecisionTreeStateHelper.ToExecuted(State);
     }
-    
-    public override IEnumerable<IEnumerable<INode>> GetBestPaths(List<INode> currentPath)
-    {
-        currentPath.Add(this);
-        var paths = new List<IEnumerable<INode>>();
-        foreach (var child in Children)
-        {
-            var childPath = new List<INode>(currentPath);
-            var nextBestPaths = child.GetBestPaths(childPath);
-            foreach (var path in nextBestPaths)
-            {
-                paths.Add(path);
-            }
-        }
-        return paths;
-    }
 }

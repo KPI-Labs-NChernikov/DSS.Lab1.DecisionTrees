@@ -11,5 +11,5 @@ public interface INode
 
     void Validate();
     void Execute();
-    IEnumerable<IEnumerable<INode>> GetBestPaths(List<INode> currentPath);
+    List<INode> GetBestChildren();
 }

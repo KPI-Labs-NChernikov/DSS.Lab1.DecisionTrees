@@ -1,229 +1,35 @@
-﻿using DSS.Lab1.DecisionTrees;
-using DSS.Lab1.DecisionTrees.Nodes;
+﻿using System.Globalization;
+using System.Text;
+using DSS.Lab1.DecisionTrees.Demo;
 
-// var decisionTree = new DecisionTree(
-//     new DecisionNode
-//     {
-//         Children =
-//         [
-//             new ProbabilityNode()
-//             {
-//                 Name = "Aquadrome",
-//                 Children = 
-//                 [
-//                     new Leaf()
-//                     {
-//                         Name = "Сприятливий стан",
-//                         InitialValue = 200000,
-//                         Factor = 0.5m
-//                     },
-//                     new Leaf()
-//                     {
-//                         Name = "Несприятливий стан",
-//                         InitialValue = -180000,
-//                         Factor = 0.5m
-//                     },
-//                 ]
-//             },
-//             new ProbabilityNode()
-//             {
-//                 Name = "Garage",
-//                 Children = 
-//                 [
-//                     new Leaf()
-//                     {
-//                         Name = "Сприятливий стан",
-//                         InitialValue = 100000,
-//                         Factor = 0.5m
-//                     },
-//                     new Leaf()
-//                     {
-//                         Name = "Несприятливий стан",
-//                         InitialValue = -20000,
-//                         Factor = 0.5m
-//                     },
-//                 ]
-//             },
-//             new Leaf()
-//             {
-//                 Name = "Deposit",
-//                 InitialValue = 10000
-//             }
-//         ]
-//     });
-var decisionTree = new DecisionTree(
-    new DecisionNode()
+Console.OutputEncoding = Encoding.UTF8;
+CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
+CultureInfo.DefaultThreadCurrentUICulture = CultureInfo.InvariantCulture;
+
+var labTask1Data = new decimal[3,2]
+{
+    { 550_000, -250_000 },
+    { 300_000, -75_000 },
+    { 55000, 55000 },
+};
+var labTasks = new ILabTask[]
+{
+    new LabTask1(labTask1Data),
+    new LabTask2(
+        labTask1Data,
+        new decimal[,]
+        {
+            { 0.75m, 0.3m},
+            { 0.25m, 0.7m}
+        },
+        10_000)
+};
+
+for (var i = 0; i < labTasks.Length; i++)
+{
+    labTasks[i].Execute();
+    if (i != labTasks.Length - 1)
     {
-        Children = 
-        [
-            new DecisionNode
-            {
-                Name = "Without audit",
-                InitialValue = 0,
-                 Children =
-                 [
-                     new ProbabilityNode()
-                     {
-                         Name = "Aquadrome",
-                         Children = 
-                         [
-                             new Leaf()
-                             {
-                                 Name = "Сприятливий стан",
-                                 InitialValue = 200000,
-                                 Factor = 0.5m
-                             },
-                             new Leaf()
-                             {
-                                 Name = "Несприятливий стан",
-                                 InitialValue = -180000,
-                                 Factor = 0.5m
-                             },
-                         ]
-                     },
-                     new ProbabilityNode()
-                     {
-                         Name = "Garage",
-                         Children = 
-                         [
-                             new Leaf()
-                             {
-                                 Name = "Сприятливий стан",
-                                 InitialValue = 100000,
-                                 Factor = 0.5m
-                             },
-                             new Leaf()
-                             {
-                                 Name = "Несприятливий стан",
-                                 InitialValue = -20000,
-                                 Factor = 0.5m
-                             },
-                         ]
-                     },
-                     new Leaf()
-                     {
-                         Name = "Deposit",
-                         InitialValue = 10000
-                     }
-                ]
-            },
-            new ProbabilityNode()
-            {
-                Name = "With audit",
-                InitialValue = -10000,
-                Children = 
-                [
-                    new DecisionNode
-                    {
-                        Name = "Сприятливий",
-                        Factor = 0.45m,
-                        Children =
-                        [
-                            new ProbabilityNode()
-                            {
-                                Name = "Aquadrome",
-                                Children = 
-                                [
-                                    new Leaf()
-                                    {
-                                        Name = "Сприятливий стан",
-                                        InitialValue = 200000,
-                                        Factor = 0.78m
-                                    },
-                                    new Leaf()
-                                    {
-                                        Name = "Несприятливий стан",
-                                        InitialValue = -180000,
-                                        Factor = 0.22m
-                                    },
-                                ]
-                            },
-                            new ProbabilityNode()
-                            {
-                                Name = "Garage",
-                                Children = 
-                                [
-                                    new Leaf()
-                                    {
-                                        Name = "Сприятливий стан",
-                                        InitialValue = 100000,
-                                        Factor = 0.78m
-                                    },
-                                    new Leaf()
-                                    {
-                                        Name = "Несприятливий стан",
-                                        InitialValue = -20000,
-                                        Factor = 0.22m
-                                    },
-                                ]
-                            },
-                            new Leaf()
-                            {
-                                Name = "Deposit",
-                                InitialValue = 10000
-                            }
-                        ]
-                    },
-                    new DecisionNode
-                    {
-                        Name = "Несприятливий",
-                        Factor = 0.55m,
-                        Children =
-                        [
-                            new ProbabilityNode()
-                            {
-                                Name = "Aquadrome",
-                                Children = 
-                                [
-                                    new Leaf()
-                                    {
-                                        Name = "Сприятливий стан",
-                                        InitialValue = 200000,
-                                        Factor = 0.27m
-                                    },
-                                    new Leaf()
-                                    {
-                                        Name = "Несприятливий стан",
-                                        InitialValue = -180000,
-                                        Factor = 0.73m
-                                    },
-                                ]
-                            },
-                            new ProbabilityNode()
-                            {
-                                Name = "Garage",
-                                Children = 
-                                [
-                                    new Leaf()
-                                    {
-                                        Name = "Сприятливий стан",
-                                        InitialValue = 100000,
-                                        Factor = 0.27m
-                                    },
-                                    new Leaf()
-                                    {
-                                        Name = "Несприятливий стан",
-                                        InitialValue = -20000,
-                                        Factor = 0.73m
-                                    },
-                                ]
-                            },
-                            new Leaf()
-                            {
-                                Name = "Deposit",
-                                InitialValue = 10000
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    });
-decisionTree.Validate();
-decisionTree.Execute();
-var paths = decisionTree.GetBestPaths();
-
-var bestPathsWithGoodPrediction = decisionTree.Root.Children[1].Children[0].GetBestPaths([]);
-var bestProjectsWithGoodPrediction = bestPathsWithGoodPrediction.Select(p => p.ElementAt(1)).Distinct();
-
-Console.WriteLine(string.Join(Environment.NewLine, bestProjectsWithGoodPrediction.Select(p => p.Name)));
+        Console.WriteLine();
+    }
+}

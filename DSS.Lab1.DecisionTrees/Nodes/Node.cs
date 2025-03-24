@@ -45,5 +45,9 @@ public abstract class Node : INode
     }
 
     public abstract void Execute();
-    public abstract IEnumerable<IEnumerable<INode>> GetBestPaths(List<INode> currentPath);
+
+    public virtual List<INode> GetBestChildren()
+    {
+        return Children.ToList();
+    }
 }

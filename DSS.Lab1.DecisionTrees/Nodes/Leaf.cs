@@ -27,10 +27,9 @@ public class Leaf : INode
         
         State = DecisionTreeStateHelper.ToExecuted(State);
     }
-
-    public IEnumerable<IEnumerable<INode>> GetBestPaths(List<INode> currentPath)
+    
+    public List<INode> GetBestChildren()
     {
-        currentPath.Add(this);
-        return Enumerable.Repeat(currentPath, 1);
+        return [];
     }
 }
