@@ -48,6 +48,6 @@ public abstract class Node : INode
 
     public virtual IReadOnlyList<INode> GetBestChildren()
     {
-        return Children.ToList();
+        return [..Children];
     }
 }

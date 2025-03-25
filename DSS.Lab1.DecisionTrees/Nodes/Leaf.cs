@@ -30,6 +30,6 @@ public class Leaf : INode
     
     public IReadOnlyList<INode> GetBestChildren()
     {
-        return [];
+        return Array.Empty<INode>();
     }
 }
