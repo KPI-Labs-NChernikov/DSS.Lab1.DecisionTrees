@@ -46,7 +46,7 @@ public abstract class Node : INode
 
     public abstract void Execute();
 
-    public virtual List<INode> GetBestChildren()
+    public virtual IReadOnlyList<INode> GetBestChildren()
     {
         return Children.ToList();
     }

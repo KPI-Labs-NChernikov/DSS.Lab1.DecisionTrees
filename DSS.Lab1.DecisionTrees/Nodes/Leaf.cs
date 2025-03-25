@@ -28,7 +28,7 @@ public class Leaf : INode
         State = DecisionTreeStateHelper.ToExecuted(State);
     }
     
-    public List<INode> GetBestChildren()
+    public IReadOnlyList<INode> GetBestChildren()
     {
         return [];
     }

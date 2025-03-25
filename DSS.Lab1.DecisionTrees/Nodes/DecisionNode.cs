@@ -39,8 +39,8 @@ public sealed class DecisionNode : Node
         base.Validate();
     }
 
-    public override List<INode> GetBestChildren()
+    public override IReadOnlyList<INode> GetBestChildren()
     {
-        return _bestChildren;
+        return [.._bestChildren];
     }
 }

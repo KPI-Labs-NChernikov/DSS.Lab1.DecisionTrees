@@ -11,5 +11,5 @@ public interface INode
 
     void Validate();
     void Execute();
-    List<INode> GetBestChildren();
+    IReadOnlyList<INode> GetBestChildren();
 }

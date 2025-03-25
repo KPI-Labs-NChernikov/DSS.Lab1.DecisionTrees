@@ -40,7 +40,7 @@ public class DecisionTree
         State = DecisionTreeStateHelper.ToExecuted(State);
     }
 
-    public List<INode> GetBestChildren()
+    public IReadOnlyList<INode> GetBestChildren()
     {
         if (State < DecisionTreeState.Executed)
         {
