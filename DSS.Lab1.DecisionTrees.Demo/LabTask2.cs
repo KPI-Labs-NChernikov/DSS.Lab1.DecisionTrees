@@ -37,9 +37,7 @@ public sealed class LabTask2 : ILabTask
 
     public void Execute()
     {
-        Console.ForegroundColor = ConsoleColor.DarkBlue;
-        Console.WriteLine("Завдання 2");
-        Console.ResetColor();   
+        ConsoleService.PrintHeader("Завдання 2");
         
         var decisionTree = new DecisionTree(
             new DecisionNode()

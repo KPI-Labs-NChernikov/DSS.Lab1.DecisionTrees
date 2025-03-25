@@ -22,9 +22,7 @@ public sealed class LabTask1 : ILabTask
     
     public void Execute()
     {
-        Console.ForegroundColor = ConsoleColor.DarkBlue;
-        Console.WriteLine("Завдання 1");
-        Console.ResetColor();
+        ConsoleService.PrintHeader("Завдання 1");
         
         var decisionTree = new DecisionTree(
             new DecisionNode

@@ -1,6 +1,7 @@
 ﻿using System.Globalization;
 using System.Text;
 using DSS.Lab1.DecisionTrees.Demo;
+using DSS.Lab1.DecisionTrees.Demo.LabTask3;
 
 Console.OutputEncoding = Encoding.UTF8;
 CultureInfo.DefaultThreadCurrentCulture = CultureInfo.InvariantCulture;
